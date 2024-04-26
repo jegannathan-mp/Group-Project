@@ -1,4 +1,4 @@
-import { songs } from "./playlist"; 
+import { songs } from "./playlist.js"; 
 
 const content = document.querySelector(".content"),
 Playimage = content.querySelector(".music-image img"),
