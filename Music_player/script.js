@@ -1,8 +1,92 @@
 
 const content = document.querySelector(".cont-2");
-const Playimage = document.querySelector(".play-img");
-const musicName = document.querySelector(".head-title");
-const musicArtist = document.querySelector(".art-name");
-const Audio = document.querySelector(".main-song");
-const prevBtn = document.querySelector("#backward");
-const nextBtn = document.querySelector("#forward");
+const Playimage = content.querySelector(".play-img");
+const musicName = content.querySelector(".head-title");
+const musicArtist = content.querySelector(".art-name");
+const Audio = content.querySelector(".main-song");
+const prevBtn = content.querySelector("#backward");
+const nextBtn = content.querySelector("#forward");
+const playBtn = content.querySelector(".play-pause1")
+const playBtnIcon = content.querySelector(".play-pause1 i")
+
+let index = 1;
+
+window.addEventListener("load", ()=>{
+    loadData(index);
+})
+
+function loadData(indexValue){
+    musicName.innerHTML = songs[indexValue -1].name;
+    musicArtist.innerHTML = songs[indexValue - 1].name;
+    Playimage.src = "images/"+songs[indexValue -1].img+".jpg";
+    Audio.src = "music/"+songs[indexValue - 1].audio+".mp3";
+}
+
+playBtn.addEventListener("click", ()=> {
+    const isMusicPaused = content.classList.containes("paused");
+    if(isMusicPaused){
+        pauseSong();
+    }
+    else{
+        playSong();
+    }
+});
+
+function playSong(){
+    content.classList.add("paused");
+    playBtnIcon.innerHTML = "pause";
+    Audio.play();
+}
+
+function pauseSong(){
+    content.classList.remove("paused");
+    playBtnIcon.innerHTML = "play_arrow"
+}
+
+
+// 
+
+function playSong(){
+    content.classList.add("paused");
+    playBtnIcon.innerHTML = "play_arrow";
+    Audio.pause();
+}
+
+nextBtn.addEventListener("click", ()=> {
+    nextSong();
+})
+
+nextBtn.addEventListener("click", () => {
+    prevSong();
+})
+
+function nextSong(){
+    index++;
+    if(index > songs.length){
+        index = 1;
+    } else {
+        index = index
+    }
+    loadData(index);
+    playSong();
+}
+
+function prevSong(){
+    index--;
+    if(index <= 0){
+        index = songs.length
+    } else {
+        index = index
+    }
+    loadData(index);
+    playSong();
+}
+
+Audio.addEventListener("ended", ()=>{
+    index++;
+    if(index > songs.length){
+        index = 1;
+    }
+    loadData(index);
+    playSong();
+})
