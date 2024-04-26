@@ -9,6 +9,8 @@ body{
     height: 100%;
     width: 100vw;
     font-family: "Poppins", sans-serif;
+    background-color: aqua !important;
+    overflow: hidden;
 }
 
 .cont-2{
@@ -17,16 +19,18 @@ body{
 
 .cont-1{
     margin: 30px 0;
+    box-shadow: 0px 0px 30px 10px black ;
 }
 
 .nav-1{
-    background-color: red;
-    border-radius: 10px 10px 0px 0px;
+    background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);;
+    border-radius: 2px 2px 0px 0px;
 }
 
 .head-title{
     font-size: 40px;
     font-weight: 300;
+    text-shadow: 0 0 5px whitesmoke, 0 0 10px white, 0 0 15px blue;
 }
 
 .header{
@@ -81,15 +85,19 @@ body{
     padding: 5px;
 }
 
+
+
 .nav-2{
-    background-color: blue;
-    border-radius : 0px 0px 10px 10px;
+   
+    border-radius : 0px 0px 2px 2px;
 }
+
+
 
 .play-pause{
     display: flex;
     margin: 0 200px;
-    padding: 50px ;
+    padding: 40px ;
     padding-bottom: 80px;
     position: relative;
 }
@@ -111,8 +119,58 @@ body{
 }
 
 #play{
-    position: absolute;
+    position: absolute ;
     font-size: 70px;
-    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+}
+
+
+.mus-control{
+    display: flex;
+    position: relative;
+    padding: 40px;
+   
+
+}
+
+.mus-control #volume{
+    font-size: 40px;
+    position: absolute;
+    left: 10%;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;   /*Remove default appearance */
+    appearance: none;
+    width: 60%; /* Set width to fill the container */
+    height: 8px; /* Set height */
+    background: linear-gradient(to right, rgb(78, 199, 70), rgb(45, 25, 62),rgb(58, 162, 188)); /* Set background color */
+    border-radius: 5px; /* Add border radius */
+    outline: none; /* Remove outline */
+    position: absolute;
+    top: 75%;
+    left: 51%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+  }
+
+
+.mus-control #volume-mute{
+    font-size: 45px;
+    position: absolute;
+    right: 10%;
+}
+
+.nav-1 i{
+    color: rgba(1, 0, 2, 0.6);
+    font-weight: 900;
+
+}
+
+.nav-1 i:hover{
+    color: rgba(237, 230, 230, 1);
+    text-shadow: 0 0 5px black,0 0 10px black,0 0 15px black;
 }
 
