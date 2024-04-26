@@ -1,3 +1,5 @@
+import { songs } from "./playlist.js";
+
 
 const content = document.querySelector(".cont-2");
 const Playimage = content.querySelector(".play-img");
@@ -6,8 +8,11 @@ const musicArtist = content.querySelector(".art-name");
 const Audio = content.querySelector(".main-song");
 const prevBtn = content.querySelector("#backward");
 const nextBtn = content.querySelector("#forward");
-const playBtn = content.querySelector(".play-pause1")
-const playBtnIcon = content.querySelector(".play-pause1 i")
+const playBtn = content.querySelector(".play-pause1");
+const playBtnIcon = content.querySelector(".play-pause1 i");
+const repeatBtn = content.querySelector("#repeat");
+const shuffle = content.querySelector("#shuffle");
+
 
 let index = 1;
 
@@ -23,7 +28,7 @@ function loadData(indexValue){
 }
 
 playBtn.addEventListener("click", ()=> {
-    const isMusicPaused = content.classList.containes("paused");
+    const isMusicPaused = content.classList.contains("paused");
     if(isMusicPaused){
         pauseSong();
     }
@@ -40,23 +45,20 @@ function playSong(){
 
 function pauseSong(){
     content.classList.remove("paused");
-    playBtnIcon.innerHTML = "play_arrow"
+    playBtnIcon.innerHTML = "play_arrow";
+    Audio.pause();
 }
 
 
 // 
 
-function playSong(){
-    content.classList.add("paused");
-    playBtnIcon.innerHTML = "play_arrow";
-    Audio.pause();
-}
+
 
 nextBtn.addEventListener("click", ()=> {
     nextSong();
 })
 
-nextBtn.addEventListener("click", () => {
+prevBtn.addEventListener("click", () => {
     prevSong();
 })
 
@@ -81,6 +83,14 @@ function prevSong(){
     loadData(index);
     playSong();
 }
+
+shuffle.addEventListener("click", ()=> {
+    var randIndex = Math.floor(Math.random()*songs.length)+1;
+    loadData(randIndex);
+    playSong();
+})
+
+
 
 Audio.addEventListener("ended", ()=>{
     index++;
