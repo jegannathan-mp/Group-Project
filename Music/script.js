@@ -81,3 +81,15 @@ function prevSong(){
     playSong();
 }
 
+Audio.addEventListener("timeupdate", (a)=>{
+    const initialTime = a.target.currentTime;
+    const finalTime = a.target.duration;
+    let BarWidth = (initialTime/finalTime) * 100;
+    progressBar.style.width = BarWidth+"X";
+    
+    progressDetails.addEventListener("click", (e)=>{
+    let progressValue = progressDetails.clientWidth;
+    let clickedOffsetX = e.offsetX;
+    });
+    });
+
