@@ -16,7 +16,7 @@ const repeatBtn = content.querySelector("#repeat");
 const shuffle = content.querySelector("#shuffle");
 const muteButton = document.querySelector("#volume-unmute");
 const timeRange = document.querySelector("#range");
-const currentTimeDisplay = document.querySelector("#timer-in")
+const currentTimeDisplay = document.querySelector("#timer-in");
 
 
 // console.dir(Playimage);
@@ -138,7 +138,7 @@ Audio.addEventListener("timeupdate", () => {
 //Update the audio playback position when the range input is changed
 timeRange.addEventListener("input", () => {
     const percentage = timeRange.value;
-    const duration = Audio.durate;
+    const duration = Audio.duration;
     const currentTime = (percentage / 100) * duration;
     Audio.currentTime = currentTime;
 })
@@ -163,6 +163,22 @@ Audio.addEventListener("timeupdate", ()=>{
     let formatedTime = `${minutes} : ${seconds}`;
     currentTimeDisplay.textContent = `${formatedTime}`;
 })
+
+
+Audio.addEventListener("timeupdate", () => {
+    let progress = (Audio.currentTime / Audio.duration) * 100;
+    timeRange.value = progress;
+});
+
+timeRange.addEventListener("input", ()=>{
+    let seekTime = (timeRange.value / 100)*Audio.duration;
+    Audio.currentTime = seekTime;
+})
+
+
+
+
+
 
 
 
