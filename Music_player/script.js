@@ -16,7 +16,8 @@ const repeatBtn = content.querySelector("#repeat");
 const shuffle = content.querySelector("#shuffle");
 const muteButton = document.querySelector("#volume-unmute");
 const timeRange = document.querySelector("#range");
-const currentTimeDisplay = document.querySelector("timer")
+const currentTimeDisplay = document.querySelector("#timer-in")
+
 
 // console.dir(Playimage);
 // console.log(Audio);
@@ -148,4 +149,21 @@ repeatBtn.addEventListener("click", () => {
     Audio.play();
     Audio.loop != Audio.loop
 })
+
+Audio.addEventListener("timeupdate", ()=>{
+    let currentTime = Math.floor(Audio.currentTime);
+    let minutes = Math.floor(currentTime /60);
+    let seconds =currentTime % 60;
+    if (minutes < 10){
+        minutes = "0"+minutes;
+    }
+    if (seconds < 10){
+        seconds = "0"+seconds
+    }
+    let formatedTime = `${minutes} : ${seconds}`;
+    currentTimeDisplay.textContent = `${formatedTime}`;
+})
+
+
+
 
